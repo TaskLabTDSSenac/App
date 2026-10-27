@@ -49,7 +49,7 @@ class TaskCard extends StatelessWidget {
               );
               if (context.mounted) await refresh();
             },
-            child: const Text('Visualizar'),
+            child: const Text('Abrir relatório'),
           ),
           TaskActions(
             task: task,

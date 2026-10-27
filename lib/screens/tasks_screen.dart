@@ -31,7 +31,7 @@ class _TasksScreenState extends State<TasksScreen> {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
           children: [
             const Text(
-              'Meu grimório de tarefas',
+              'Missões da Escola Jujutsu',
               style: TextStyle(
                 fontFamily: 'TaskLabTitle',
                 fontSize: 27,
@@ -50,7 +50,9 @@ class _TasksScreenState extends State<TasksScreen> {
               const Card(
                 child: Padding(
                   padding: EdgeInsets.all(24),
-                  child: Text('Seu grimório ainda não possui tarefas.'),
+                  child: Text(
+                    'Nenhuma missão registrada. Aguarde novas instruções da Escola Jujutsu.',
+                  ),
                 ),
               ),
             for (final task in state.tasks)

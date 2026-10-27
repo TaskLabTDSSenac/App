@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Sua jornada começa aqui',
+                  'Seu treinamento como feiticeiro começa aqui',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 MessageBox(error),

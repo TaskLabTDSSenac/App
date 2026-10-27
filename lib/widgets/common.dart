@@ -8,22 +8,21 @@ class Brand extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     children: [
       Semantics(
-        label: 'TaskLab',
-        child: Icon(
-          Icons.auto_stories_outlined,
-          color: AppTheme.gold,
-          size: 46,
-        ),
+        label: 'Jujutsu Kaisen',
+        child: Icon(Icons.bolt, color: AppTheme.gold, size: 46),
       ),
       Text(
-        'TaskLab',
+        'JUJUTSU KAISEN',
         style: TextStyle(
           fontFamily: 'TaskLabTitle',
           fontSize: 34,
           color: AppTheme.gold,
         ),
       ),
-      Text('Seu grimório de tarefas', style: TextStyle(color: AppTheme.paper)),
+      Text(
+        'ENERGIA AMALDIÇOADA • MISSÕES',
+        style: TextStyle(color: AppTheme.paper),
+      ),
     ],
   );
 }

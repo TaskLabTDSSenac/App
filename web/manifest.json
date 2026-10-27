@@ -1,11 +1,11 @@
 {
-    "name": "TaskLab",
-    "short_name": "TaskLab",
+    "name": "Jujutsu Kaisen • Missões",
+    "short_name": "Jujutsu Missões",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "TaskLab - Seu grimorio de tarefas.",
+    "background_color": "#111116",
+    "theme_color": "#e83d55",
+    "description": "Registre missões da Escola Jujutsu e acompanhe sua conclusão.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

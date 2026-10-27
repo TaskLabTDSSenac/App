@@ -20,7 +20,7 @@ class SessionScreen extends StatelessWidget {
       tasks: tasks,
     ),
     AuthPhase.unavailable => Scaffold(
-      appBar: AppBar(title: const Text('Verificar sessão')),
+      appBar: AppBar(title: const Text('Conexão com a Escola Jujutsu')),
       body: Column(
         children: [
           Expanded(
@@ -32,7 +32,7 @@ class SessionScreen extends StatelessWidget {
           SafeArea(
             child: TextButton(
               onPressed: () => auth.logout(),
-              child: const Text('Sair desta sessão'),
+              child: const Text('Encerrar conexão'),
             ),
           ),
         ],

@@ -42,7 +42,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Detalhes da tarefa')),
+    appBar: AppBar(title: const Text('Relatório da missão')),
     body: loading
         ? const LoadingView()
         : error != null

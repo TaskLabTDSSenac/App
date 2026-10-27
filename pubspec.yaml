@@ -1,5 +1,5 @@
 name: tasklab_mobile
-description: "TaskLab Mobile - aplicativo didatico de tarefas."
+description: "Aplicativo de missões inspirado no universo de Jujutsu Kaisen."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

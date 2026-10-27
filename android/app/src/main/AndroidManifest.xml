@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="TaskLab"
+        android:label="Jujutsu Missões"
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
         android:name="${applicationName}"

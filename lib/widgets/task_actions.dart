@@ -11,10 +11,8 @@ Future<bool> confirmTaskDeletion(BuildContext context, String title) async =>
     await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Excluir tarefa?'),
-        content: Text(
-          '“$title” será excluída. Esta ação não pode ser desfeita.',
-        ),
+        title: const Text('Abandonar missão?'),
+        content: Text('O registro “$title” será removido permanentemente.'),
         actions: [
           TextButton(
             key: const Key('delete-cancel'),
@@ -24,7 +22,7 @@ Future<bool> confirmTaskDeletion(BuildContext context, String title) async =>
           FilledButton(
             key: const Key('delete-confirm'),
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Excluir'),
+            child: const Text('Remover registro'),
           ),
         ],
       ),
@@ -71,7 +69,7 @@ class _TaskActionsState extends State<TaskActions> {
           }
           rethrow;
         }
-        if (mounted) showNotice(context, 'Tarefa concluída.');
+        if (mounted) showNotice(context, 'Missão concluída.');
         await widget.refresh();
       }
     } catch (e) {
@@ -108,12 +106,12 @@ class _TaskActionsState extends State<TaskActions> {
         TextButton(
           key: const Key('task-complete'),
           onPressed: busy ? null : () => run('complete'),
-          child: Text(busy ? 'Aguarde…' : 'Concluir'),
+          child: Text(busy ? 'Aguarde…' : 'Concluir missão'),
         ),
       TextButton(
         key: const Key('task-delete'),
         onPressed: busy ? null : () => run('delete'),
-        child: const Text('Excluir'),
+        child: const Text('Apagar'),
       ),
     ],
   );

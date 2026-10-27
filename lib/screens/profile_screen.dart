@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Meu perfil',
+                'Ficha do feiticeiro',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               if (!AppConfig.profileEditingAvailable)
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Projeto educacional inspirado no universo de Harry Potter.',
+                'Escola Jujutsu • Cadastro de feiticeiro',
                 textAlign: TextAlign.center,
               ),
             ],

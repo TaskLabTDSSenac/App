@@ -1,4 +1,4 @@
-# TaskLab Mobile — Seu grimório de tarefas
+# Jujutsu Kaisen — Registro de missões
 
 Aplicativo didático Flutter/Material 3 para a UC12 do Senac. Consome a mesma API
 do Site: usuários, senhas e tarefas são compartilhados. Não há backend próprio,

@@ -42,12 +42,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Entre no mundo da magia',
+                        'A Escola Jujutsu precisa de você',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'Acesse seu grimório e prepare suas próximas missões.',
+                        'Entre para a comunidade de feiticeiros e acompanhe suas missões.',
                       ),
                       MessageBox(notice, success: true),
                       MessageBox(widget.auth.message),
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 20),
           const Text(
-            'Projeto educacional inspirado no universo de Harry Potter.',
+            'TOKYO JUJUTSU HIGH • REGISTRO DE MISSÕES',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white70),
           ),
