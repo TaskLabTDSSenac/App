@@ -10,7 +10,7 @@ class Brand extends StatelessWidget {
       Semantics(
         label: 'TaskLab',
         child: Icon(
-          Icons.auto_stories_outlined,
+          Icons.memory_outlined,
           color: AppTheme.gold,
           size: 46,
         ),
@@ -23,7 +23,7 @@ class Brand extends StatelessWidget {
           color: AppTheme.gold,
         ),
       ),
-      Text('Seu grimório de tarefas', style: TextStyle(color: AppTheme.paper)),
+      Text('Sua central de operações digitais', style: TextStyle(color: AppTheme.muted)),
     ],
   );
 }
@@ -60,16 +60,16 @@ class MessageBox extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: success
-                  ? const Color(0xffe2e9d4)
-                  : const Color(0xfffae8df),
+                  ? const Color(0xff12312f)
+                  : const Color(0xff351a2b),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               text!,
               style: TextStyle(
                 color: success
-                    ? const Color(0xff315333)
-                    : const Color(0xff852d28),
+                    ? AppTheme.cyan
+                    : const Color(0xffff79b9),
               ),
             ),
           ),

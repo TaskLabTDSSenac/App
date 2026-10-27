@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Meu perfil',
+                'Identidade digital',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               if (!AppConfig.profileEditingAvailable)
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Projeto educacional inspirado no universo de Harry Potter.',
+                'Sua identidade conectada à rede TaskLab.',
                 textAlign: TextAlign.center,
               ),
             ],

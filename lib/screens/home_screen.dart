@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (mounted) await widget.tasks.refresh();
             },
             icon: const Icon(Icons.add),
-            label: const Text('Criar tarefa'),
+            label: const Text('Nova missão'),
           )
         : null,
     bottomNavigationBar: NavigationBar(
@@ -60,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
       onDestinationSelected: (value) => setState(() => index = value),
       destinations: const [
         NavigationDestination(
-          icon: Icon(Icons.auto_stories_outlined),
-          label: 'Tarefas',
+          icon: Icon(Icons.terminal),
+          label: 'Missões',
         ),
         NavigationDestination(
           icon: Icon(Icons.person_outline),

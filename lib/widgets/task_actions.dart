@@ -11,9 +11,9 @@ Future<bool> confirmTaskDeletion(BuildContext context, String title) async =>
     await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Excluir tarefa?'),
+        title: const Text('Remover missão?'),
         content: Text(
-          '“$title” será excluída. Esta ação não pode ser desfeita.',
+          '“$title” será removida do sistema. Esta ação não pode ser desfeita.',
         ),
         actions: [
           TextButton(
@@ -71,7 +71,7 @@ class _TaskActionsState extends State<TaskActions> {
           }
           rethrow;
         }
-        if (mounted) showNotice(context, 'Tarefa concluída.');
+        if (mounted) showNotice(context, 'Missão concluída.');
         await widget.refresh();
       }
     } catch (e) {

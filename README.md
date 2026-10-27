@@ -1,4 +1,4 @@
-# TaskLab Mobile — Seu grimório de tarefas
+# TaskLab Mobile — sua central cyberpunk de missões
 
 Aplicativo didático Flutter/Material 3 para a UC12 do Senac. Consome a mesma API
 do Site: usuários, senhas e tarefas são compartilhados. Não há backend próprio,
@@ -77,11 +77,11 @@ bloqueará as chamadas; CORS não se aplica ao cliente Android nativo.
 
 ## Organização
 
-- `config/`, `theme/`: configuração e tema azul-noturno/dourado/pergaminho.
+- `config/`, `theme/`: configuração e tema cyberpunk em preto, ciano e magenta.
 - `models/`: usuário, tarefa e validações reutilizáveis, sem defaults que ocultem campos ausentes.
 - `services/`: cliente HTTP injetável, autenticação, tarefas, usuário e token seguro.
 - `controllers/`: sessão e lista de tarefas com ChangeNotifier.
-- `screens/`: telas, Navigator, formulários e navegação inferior Tarefas/Perfil.
+- `screens/`: telas, Navigator, formulários e navegação inferior Missões/Perfil.
 - `widgets/`: campos de senha, cartões, estados e ações compartilhadas.
 - `exceptions/`: erros compreensíveis em português.
 - `test/`: cliente HTTP simulado, sessão, modelos, validações e widgets.
