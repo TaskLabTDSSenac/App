@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import '../config/app_config.dart';
 import '../controllers/auth_controller.dart';
 import '../models/validators.dart';
+import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import 'change_password_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final AuthController auth;
   const ProfileScreen({super.key, required this.auth});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -19,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool busy = false;
   String? message;
   bool success = false;
+
   @override
   void initState() {
     super.initState();
@@ -66,13 +69,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Center(
+                child: Container(
+                  width: 68,
+                  height: 68,
+                  decoration: BoxDecoration(
+                    color: AppTheme.accent,
+                    borderRadius: BorderRadius.circular(23),
+                  ),
+                  child: const Icon(
+                    Icons.sports_motorsports_rounded,
+                    color: AppTheme.ink,
+                    size: 36,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Center(
+                child: SectionEyebrow(
+                  'Equipe do box',
+                  icon: Icons.badge_outlined,
+                ),
+              ),
+              const SizedBox(height: 8),
               Text(
-                'Meu perfil',
+                'Perfil do piloto',
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
+              const SizedBox(height: 20),
               if (!AppConfig.profileEditingAvailable)
                 const MessageBox(
-                  'Edição de nome e e-mail pendente: a API ainda não oferece essa rota. Nenhuma alteração será salva.',
+                  'A edição de nome e e-mail ainda não está disponível. Nenhuma alteração será salva.',
                 ),
               MessageBox(message, success: success),
               TextFormField(
@@ -96,14 +124,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: const InputDecoration(labelText: 'E-mail'),
               ),
               const SizedBox(height: 20),
-              FilledButton(
+              FilledButton.icon(
                 key: const Key('profile-save'),
                 onPressed: busy || !AppConfig.profileEditingAvailable
                     ? null
                     : save,
-                child: Text(busy ? 'Salvando…' : 'Salvar dados'),
+                icon: const Icon(Icons.save_outlined),
+                label: Text(busy ? 'Salvando…' : 'Salvar dados'),
               ),
-              TextButton(
+              TextButton.icon(
                 key: const Key('profile-password'),
                 onPressed: () => Navigator.push(
                   context,
@@ -111,17 +140,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (_) => ChangePasswordScreen(auth: widget.auth),
                   ),
                 ),
-                child: const Text('Alterar senha'),
+                icon: const Icon(Icons.lock_reset_rounded, size: 18),
+                label: const Text('Alterar senha'),
               ),
-              OutlinedButton(
+              OutlinedButton.icon(
                 key: const Key('logout'),
                 onPressed: () => widget.auth.logout(),
-                child: const Text('Sair'),
+                icon: const Icon(Icons.logout_rounded, size: 18),
+                label: const Text('Sair da conta'),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 14),
               const Text(
-                'Projeto educacional inspirado no universo de Harry Potter.',
+                'Seu box. Seu ritmo. Sua estrada.',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppTheme.muted,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),

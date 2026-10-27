@@ -11,9 +11,10 @@ Future<bool> confirmTaskDeletion(BuildContext context, String title) async =>
     await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Excluir tarefa?'),
+        icon: const Icon(Icons.delete_outline_rounded, size: 32),
+        title: const Text('Remover tarefa?'),
         content: Text(
-          '“$title” será excluída. Esta ação não pode ser desfeita.',
+          'Deseja remover “$title” da sua lista? Esta ação não pode ser desfeita.',
         ),
         actions: [
           TextButton(
@@ -24,7 +25,7 @@ Future<bool> confirmTaskDeletion(BuildContext context, String title) async =>
           FilledButton(
             key: const Key('delete-confirm'),
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Excluir'),
+            child: const Text('Remover'),
           ),
         ],
       ),
@@ -43,12 +44,14 @@ class TaskActions extends StatefulWidget {
     required this.refresh,
     required this.deleted,
   });
+
   @override
   State<TaskActions> createState() => _TaskActionsState();
 }
 
 class _TaskActionsState extends State<TaskActions> {
   bool busy = false;
+
   Future<void> run(String action) async {
     if (busy) return;
     setState(() => busy = true);
@@ -71,7 +74,7 @@ class _TaskActionsState extends State<TaskActions> {
           }
           rethrow;
         }
-        if (mounted) showNotice(context, 'Tarefa concluída.');
+        if (mounted) showNotice(context, 'Serviço marcado como concluído.');
         await widget.refresh();
       }
     } catch (e) {
@@ -83,10 +86,10 @@ class _TaskActionsState extends State<TaskActions> {
 
   @override
   Widget build(BuildContext context) => Wrap(
-    spacing: 8,
-    runSpacing: 8,
+    spacing: 2,
+    runSpacing: 0,
     children: [
-      TextButton(
+      TextButton.icon(
         key: const Key('task-edit'),
         onPressed: busy
             ? null
@@ -102,18 +105,22 @@ class _TaskActionsState extends State<TaskActions> {
                 );
                 if (mounted) await widget.refresh();
               },
-        child: const Text('Editar'),
+        icon: const Icon(Icons.edit_outlined, size: 16),
+        label: const Text('Editar'),
       ),
       if (!widget.task.completed)
-        TextButton(
+        TextButton.icon(
           key: const Key('task-complete'),
           onPressed: busy ? null : () => run('complete'),
-          child: Text(busy ? 'Aguarde…' : 'Concluir'),
+          icon: const Icon(Icons.check_circle_outline_rounded, size: 16),
+          label: Text(busy ? 'Aguarde…' : 'Concluir'),
         ),
-      TextButton(
+      TextButton.icon(
         key: const Key('task-delete'),
         onPressed: busy ? null : () => run('delete'),
-        child: const Text('Excluir'),
+        icon: const Icon(Icons.delete_outline_rounded, size: 16),
+        label: const Text('Excluir'),
+        style: TextButton.styleFrom(foregroundColor: const Color(0xff9d403a)),
       ),
     ],
   );

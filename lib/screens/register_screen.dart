@@ -8,6 +8,7 @@ import '../widgets/password_field.dart';
 class RegisterScreen extends StatefulWidget {
   final AuthController auth;
   const RegisterScreen({super.key, required this.auth});
+
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -20,6 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       confirmation = TextEditingController();
   bool busy = false;
   String? error;
+
   @override
   void dispose() {
     for (final field in [name, email, password, confirmation]) {
@@ -56,10 +58,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const SectionEyebrow(
+                  'Cadastro da equipe',
+                  icon: Icons.badge_outlined,
+                ),
+                const SizedBox(height: 10),
                 Text(
-                  'Sua jornada começa aqui',
+                  'Entre para a equipe do box.',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Crie seu acesso para organizar tarefas e acompanhar cada serviço.',
+                  style: TextStyle(color: Color(0xff626a6c)),
+                ),
+                const SizedBox(height: 12),
                 MessageBox(error),
                 TextFormField(
                   key: const Key('register-name'),
@@ -95,10 +108,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
+                FilledButton.icon(
                   key: const Key('register-submit'),
                   onPressed: busy ? null : submit,
-                  child: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  icon: const Icon(Icons.flag_rounded),
+                  label: Text(busy ? 'Criando conta…' : 'Criar conta'),
                 ),
               ],
             ),

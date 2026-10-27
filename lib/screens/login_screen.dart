@@ -9,6 +9,7 @@ import 'register_screen.dart';
 class LoginScreen extends StatefulWidget {
   final AuthController auth;
   const LoginScreen({super.key, required this.auth});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final email = TextEditingController();
   final password = TextEditingController();
   String? notice;
+
   @override
   void dispose() {
     email.dispose();
@@ -30,8 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
     body: PageBody(
       child: Column(
         children: [
+          const SizedBox(height: 12),
           const Brand(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 30),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -41,14 +44,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const SectionEyebrow(
+                        'Acesso do piloto',
+                        icon: Icons.key_rounded,
+                      ),
+                      const SizedBox(height: 10),
                       Text(
-                        'Entre no mundo da magia',
+                        'Sua garagem começa aqui.',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
                       const Text(
-                        'Acesse seu grimório e prepare suas próximas missões.',
+                        'Entre para acompanhar seus serviços e manter tudo pronto para a estrada.',
+                        style: TextStyle(color: Color(0xff626a6c)),
                       ),
+                      const SizedBox(height: 12),
                       MessageBox(notice, success: true),
                       MessageBox(widget.auth.message),
                       TextFormField(
@@ -67,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: Validators.currentPassword,
                       ),
                       const SizedBox(height: 20),
-                      FilledButton(
+                      FilledButton.icon(
                         key: const Key('login-submit'),
                         onPressed: widget.auth.busy
                             ? null
@@ -76,8 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   widget.auth.login(email.text, password.text);
                                 }
                               },
-                        child: Text(widget.auth.busy ? 'Entrando…' : 'Entrar'),
+                        icon: const Icon(Icons.login_rounded),
+                        label: Text(
+                          widget.auth.busy ? 'Entrando…' : 'Entrar na garagem',
+                        ),
                       ),
+                      const SizedBox(height: 8),
                       TextButton(
                         onPressed: widget.auth.busy
                             ? null
@@ -91,14 +105,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                 if (mounted && registered == true) {
                                   setState(() {
-                                    notice = 'Conta criada com sucesso. Faça login para continuar.';
+                                    notice = 'Conta criada. Entre para acessar sua garagem.';
                                     password.clear();
                                   });
                                 }
                               },
-                        child: const Text(
-                          'Ainda não possui uma conta? Cadastre-se',
-                        ),
+                        child: const Text('Novo por aqui? Criar conta'),
                       ),
                       if (widget.auth.message?.contains('apagar o token') ==
                           true)
@@ -112,11 +124,23 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          const Text(
-            'Projeto educacional inspirado no universo de Harry Potter.',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white70),
+          const SizedBox(height: 22),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.flag_outlined, color: Colors.white38, size: 15),
+              SizedBox(width: 8),
+              Text(
+                'UM BOX ORGANIZADO. UMA VIDA NA ESTRADA.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white54,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ],
           ),
         ],
       ),

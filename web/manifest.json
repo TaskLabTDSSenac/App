@@ -1,11 +1,11 @@
 {
-    "name": "TaskLab",
-    "short_name": "TaskLab",
+    "name": "Pitlane — Central de Garagem",
+    "short_name": "Pitlane",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "TaskLab - Seu grimorio de tarefas.",
+    "background_color": "#111416",
+    "theme_color": "#111416",
+    "description": "Pitlane — tarefas e serviços da sua garagem.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../controllers/auth_controller.dart';
 import '../models/validators.dart';
+import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/password_field.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   final AuthController auth;
   const ChangePasswordScreen({super.key, required this.auth});
+
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
@@ -19,6 +21,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       confirmation = TextEditingController();
   bool busy = false, success = false;
   String? message;
+
   @override
   void dispose() {
     for (final field in [current, next, confirmation]) {
@@ -63,7 +66,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text('Escolha uma nova senha entre 8 e 128 caracteres.'),
+                const SectionEyebrow(
+                  'Segurança do piloto',
+                  icon: Icons.shield_outlined,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Atualize sua senha',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Escolha uma nova senha entre 8 e 128 caracteres.',
+                  style: TextStyle(color: Color(0xff626a6c)),
+                ),
+                const SizedBox(height: 16),
                 MessageBox(message, success: success),
                 PasswordField(
                   key: const Key('password-current'),
@@ -89,14 +106,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
+                FilledButton.icon(
                   key: const Key('password-submit'),
                   onPressed: busy ? null : save,
-                  child: Text(busy ? 'Alterando…' : 'Alterar senha'),
+                  icon: const Icon(Icons.lock_reset_rounded),
+                  label: Text(busy ? 'Alterando…' : 'Alterar senha'),
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Sua sessão continuará ativa. Tokens anteriores permanecem válidos até expirar.',
+                  'Sua sessão continuará ativa; tokens antigos permanecem válidos até expirarem.',
+                  style: TextStyle(
+                    color: AppTheme.muted,
+                    fontSize: 12,
+                    height: 1.4,
+                  ),
                 ),
               ],
             ),
