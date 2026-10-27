@@ -1,11 +1,11 @@
 {
-    "name": "tasklab_mobile",
-    "short_name": "tasklab_mobile",
+    "name": "TaskLab",
+    "short_name": "TaskLab",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "TaskLab - Seu grimorio de tarefas.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

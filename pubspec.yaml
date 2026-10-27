@@ -1,5 +1,5 @@
 name: tasklab_mobile
-description: "A new Flutter project."
+description: "TaskLab Mobile - aplicativo didatico de tarefas."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,6 +34,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_localizations:
+    sdk: flutter
+  http: ^1.6.0
+  flutter_secure_storage: ^11.2.0
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:
@@ -87,3 +92,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  fonts:
+    - family: TaskLabText
+      fonts:
+        - asset: assets/fonts/roboto-regular.ttf
+        - asset: assets/fonts/roboto-bold.ttf
+          weight: 700
+    - family: TaskLabTitle
+      fonts:
+        - asset: assets/fonts/LibreBaskerville.ttf
