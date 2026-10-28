@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'controllers/auth_controller.dart';
@@ -48,6 +48,22 @@ class _TaskLabAppState extends State<TaskLabApp> {
     locale: const Locale('pt', 'BR'),
     supportedLocales: const [Locale('pt', 'BR')],
     localizationsDelegates: GlobalMaterialLocalizations.delegates,
+    builder: (context, child) => Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset('assets/images/vice_city_11_background.jpg', fit: BoxFit.cover),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0x66070a11), Color(0x55070a11), Color(0x88070a11)],
+            ),
+          ),
+        ),
+        ?child,
+      ],
+    ),
     home: ListenableBuilder(
       listenable: widget.auth,
       builder: (_, _) => SessionScreen(auth: widget.auth, tasks: widget.tasks),
