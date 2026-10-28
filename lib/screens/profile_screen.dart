@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Projeto educacional inspirado no universo de Harry Potter.',
+                'TaskLab Motor Club ? No seu ritmo. Na sua dire??o.',
                 textAlign: TextAlign.center,
               ),
             ],

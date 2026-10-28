@@ -9,21 +9,28 @@ class Brand extends StatelessWidget {
     children: [
       Semantics(
         label: 'TaskLab',
-        child: Icon(
-          Icons.auto_stories_outlined,
-          color: AppTheme.gold,
-          size: 46,
-        ),
+        child: Icon(Icons.two_wheeler, color: AppTheme.gold, size: 64),
       ),
       Text(
-        'TaskLab',
+        'TASKLAB',
         style: TextStyle(
-          fontFamily: 'TaskLabTitle',
+          fontFamily: 'TaskLabText',
+          fontWeight: FontWeight.w700,
           fontSize: 34,
           color: AppTheme.gold,
         ),
       ),
-      Text('Seu grimório de tarefas', style: TextStyle(color: AppTheme.paper)),
+      const Text(
+        'MOTOR CLUB',
+        style: TextStyle(
+          color: AppTheme.gold,
+          fontSize: 11,
+          letterSpacing: 5,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      const SizedBox(height: 12),
+      Text('SUA ROTA. SUAS REGRAS.', style: TextStyle(color: AppTheme.chrome)),
     ],
   );
 }
@@ -60,16 +67,16 @@ class MessageBox extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: success
-                  ? const Color(0xffe2e9d4)
-                  : const Color(0xfffae8df),
+                  ? const Color(0xff203026)
+                  : const Color(0xff35211f),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               text!,
               style: TextStyle(
                 color: success
-                    ? const Color(0xff315333)
-                    : const Color(0xff852d28),
+                    ? const Color(0xffb5d9bc)
+                    : const Color(0xffffb4a8),
               ),
             ),
           ),

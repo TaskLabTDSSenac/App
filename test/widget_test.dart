@@ -26,7 +26,7 @@ void main() {
     final tasks = TasksController(auth, TaskService(api));
     await tester.pumpWidget(TaskLabApp(auth: auth, tasks: tasks));
     await tester.pumpAndSettle();
-    expect(find.text('Meu grimório de tarefas'), findsOneWidget);
+    expect(find.text('MINHA ROTA'), findsOneWidget);
     await tester.tap(find.byKey(const Key('task-create')));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('task-save')), findsOneWidget);
@@ -60,7 +60,7 @@ void main() {
     await tester.pumpWidget(TaskLabApp(auth: auth, tasks: tasks));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('login-email')), findsOneWidget);
-    expect(find.text('Seu grimório de tarefas'), findsOneWidget);
+    expect(find.text('SUA ROTA. SUAS REGRAS.'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
     tasks.dispose();

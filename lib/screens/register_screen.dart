@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Sua jornada começa aqui',
+                  'A ESTRADA CHAMA',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 MessageBox(error),

@@ -59,10 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedIndex: index,
       onDestinationSelected: (value) => setState(() => index = value),
       destinations: const [
-        NavigationDestination(
-          icon: Icon(Icons.auto_stories_outlined),
-          label: 'Tarefas',
-        ),
+        NavigationDestination(icon: Icon(Icons.two_wheeler), label: 'Tarefas'),
         NavigationDestination(
           icon: Icon(Icons.person_outline),
           label: 'Perfil',

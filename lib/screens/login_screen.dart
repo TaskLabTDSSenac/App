@@ -42,12 +42,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Entre no mundo da magia',
+                        'ENTRE PARA O CLUBE',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'Acesse seu grimório e prepare suas próximas missões.',
+                        'Acesse sua conta e coloque os planos na estrada.',
                       ),
                       MessageBox(notice, success: true),
                       MessageBox(widget.auth.message),
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 20),
           const Text(
-            'Projeto educacional inspirado no universo de Harry Potter.',
+            'TaskLab Motor Club ? No seu ritmo. Na sua dire??o.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white70),
           ),
