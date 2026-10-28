@@ -8,11 +8,10 @@ class Brand extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     children: [
       Semantics(
-        label: 'TaskLab',
-        child: Icon(
-          Icons.auto_stories_outlined,
-          color: AppTheme.gold,
-          size: 46,
+        label: 'Dado de vinte lados',
+        child: CustomPaint(
+          size: const Size(46, 46),
+          painter: D20Painter(),
         ),
       ),
       Text(
@@ -28,6 +27,60 @@ class Brand extends StatelessWidget {
   );
 }
 
+class D20Painter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final points = <Offset>[
+      Offset(size.width * 0.5, size.height * 0.04),
+      Offset(size.width * 0.96, size.height * 0.31),
+      Offset(size.width * 0.79, size.height * 0.88),
+      Offset(size.width * 0.21, size.height * 0.88),
+      Offset(size.width * 0.04, size.height * 0.31),
+    ];
+    final center = Offset(size.width * 0.5, size.height * 0.49);
+    final outline = Paint()
+      ..color = AppTheme.gold
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.7
+      ..strokeJoin = StrokeJoin.round;
+    final fill = Paint()
+      ..color = AppTheme.forest
+      ..style = PaintingStyle.fill;
+
+    final silhouette = Path()..moveTo(points.first.dx, points.first.dy);
+    for (final point in points.skip(1)) {
+      silhouette.lineTo(point.dx, point.dy);
+    }
+    silhouette.close();
+    canvas.drawPath(silhouette, fill);
+    canvas.drawPath(silhouette, outline);
+
+    for (var i = 0; i < points.length; i++) {
+      final facet = Path()
+        ..moveTo(center.dx, center.dy)
+        ..lineTo(points[i].dx, points[i].dy)
+        ..lineTo(points[(i + 1) % points.length].dx, points[(i + 1) % points.length].dy);
+      canvas.drawPath(facet, outline..strokeWidth = 1.15);
+    }
+
+    final number = TextPainter(
+      text: const TextSpan(
+        text: '20',
+        style: TextStyle(
+          color: AppTheme.brightGold,
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          height: 1,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    number.paint(canvas, Offset(center.dx - number.width / 2, center.dy - number.height / 2));
+  }
+
+  @override
+  bool shouldRepaint(covariant D20Painter oldDelegate) => false;
+}
 class PageBody extends StatelessWidget {
   final Widget child;
   const PageBody({super.key, required this.child});
