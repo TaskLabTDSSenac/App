@@ -82,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: const Key('register-password'),
                   controller: password,
                   label: 'Senha',
-                  validator: Validators.password,
+                  validator: Validators.registrationPassword,
                   newPassword: true,
                 ),
                 const SizedBox(height: 16),
@@ -90,8 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: const Key('register-confirmation'),
                   controller: confirmation,
                   label: 'Confirmação de senha',
-                  validator: (value) =>
-                      Validators.confirmation(value, password.text),
+                  validator: Validators.confirmationRequired,
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
