@@ -101,8 +101,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   key: const Key('password-confirmation'),
                   controller: confirmation,
                   label: 'Confirmação da nova senha',
-                  validator: (value) =>
-                      Validators.confirmation(value, next.text),
+                  validator: Validators.confirmationRequired,
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
