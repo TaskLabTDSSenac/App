@@ -6,6 +6,22 @@ class Validators {
   static String? name(String? value) => length(value?.trim(), 1, 150, 'Nome');
   static String? title(String? value) =>
       length(value?.trim(), 3, 150, 'Título');
+  static String? registrationPassword(String? value) =>
+      length(value, 6, 128, 'Senha');
+  static String? confirmationRequired(String? value) =>
+      length(value, 1, 128, 'Confirmação de senha');
+  static String? taskTitle(String? value, {required bool editing}) {
+    final raw = value ?? '';
+    if (!editing &&
+        raw.isNotEmpty &&
+        raw.trim().isEmpty &&
+        raw.runes.length <= 150) {
+      return null;
+    }
+    if (editing && raw.trim().runes.length > 150) return null;
+    return title(value);
+  }
+
   static String? password(String? value) => length(value, 8, 128, 'Senha');
   static String? currentPassword(String? value) =>
       length(value, 1, 128, 'Senha atual');

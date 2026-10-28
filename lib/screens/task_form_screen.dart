@@ -94,7 +94,10 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                       TextFormField(
                         key: const Key('task-title'),
                         controller: title,
-                        validator: Validators.title,
+                        validator: (value) => Validators.taskTitle(
+                          value,
+                          editing: widget.id != null,
+                        ),
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
                           labelText: 'Nome da missão',
