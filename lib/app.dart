@@ -42,7 +42,7 @@ class _TaskLabAppState extends State<TaskLabApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     navigatorKey: navigator,
-    title: 'TaskLab',
+    title: 'Crônicas do Grimório',
     debugShowCheckedModeBanner: false,
     theme: AppTheme.theme,
     locale: const Locale('pt', 'BR'),

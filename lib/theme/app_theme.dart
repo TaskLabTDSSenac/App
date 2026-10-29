@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const night = Color(0xff111812);
-  static const forest = Color(0xff1b2920);
-  static const gold = Color(0xffc7a56b);
-  static const brightGold = Color(0xffe0c58f);
-  static const paper = Color(0xfff1e6ce);
-  static const ink = Color(0xff2d2a22);
-  static const mutedInk = Color(0xff696354);
+  static const night = Color(0xff1b0b12);
+  static const forest = Color(0xff481827);
+  static const gold = Color(0xffc7a04b);
+  static const brightGold = Color(0xffefd181);
+  static const paper = Color(0xfff4e8d1);
+  static const ink = Color(0xff30251f);
+  static const mutedInk = Color(0xff716052);
 
   static ThemeData get theme {
     final scheme = ColorScheme.fromSeed(
@@ -15,7 +15,7 @@ class AppTheme {
       brightness: Brightness.dark,
       primary: gold,
       onPrimary: night,
-      secondary: const Color(0xff879b72),
+      secondary: const Color(0xff9a5366),
       surface: paper,
       onSurface: ink,
       error: const Color(0xffb45345),
@@ -76,7 +76,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: forest, width: 2),
+          borderSide: const BorderSide(color: gold, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -104,8 +104,8 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: forest,
-          side: const BorderSide(color: forest),
+          foregroundColor: brightGold,
+          side: const BorderSide(color: gold),
           minimumSize: const Size(48, 48),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),

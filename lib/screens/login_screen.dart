@@ -42,12 +42,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Entre no mundo da magia',
+                        'Sua próxima aventura começa aqui',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'Acesse seu grimório e prepare suas próximas missões.',
+                        'Abra seu grimório e prepare-se para novas missões.',
                       ),
                       MessageBox(notice, success: true),
                       MessageBox(widget.auth.message),
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   widget.auth.login(email.text, password.text);
                                 }
                               },
-                        child: Text(widget.auth.busy ? 'Entrando…' : 'Entrar'),
+                        child: Text(widget.auth.busy ? 'Abrindo o portal…' : 'Entrar na aventura'),
                       ),
                       TextButton(
                         onPressed: widget.auth.busy
@@ -91,13 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                 if (mounted && registered == true) {
                                   setState(() {
-                                    notice = 'Conta criada com sucesso. Faça login para continuar.';
+                                    notice = 'Personagem criado! Entre para continuar sua jornada.';
                                     password.clear();
                                   });
                                 }
                               },
                         child: const Text(
-                          'Ainda não possui uma conta? Cadastre-se',
+                          'Novo por estas terras? Crie seu personagem',
                         ),
                       ),
                       if (widget.auth.message?.contains('apagar o token') ==
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 20),
           const Text(
-            'Projeto educacional inspirado no universo de Harry Potter.',
+            'Reúna suas missões e escreva sua própria lenda.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white70),
           ),

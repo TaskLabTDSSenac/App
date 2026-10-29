@@ -69,11 +69,10 @@ proposta `PATCH /users/me` está centralizada e bloqueada por
 `AppConfig.profileEditingAvailable`; só ative depois de confirmar o contrato real.
 Não são feitas tentativas em múltiplos endpoints nem apresentado sucesso falso.
 
-**CORS do Flutter Web:** o backend deve autorizar explicitamente
-`http://localhost:5501` e `http://127.0.0.1:5501`, os métodos usados pelo app e os
-cabeçalhos Authorization/Content-Type. As origens do Site (5500) não bastam.
-API e Site não foram modificados nesta entrega. Sem esse ajuste, o navegador
-bloqueará as chamadas; CORS não se aplica ao cliente Android nativo.
+**CORS do Flutter Web:** o backend autoriza as origens do Site (5500), do app
+(5501) e as portas HTTP locais dinâmicas do Flutter em `localhost`/`127.0.0.1`,
+com os métodos usados pelo app e os cabeçalhos Authorization/Content-Type.
+Se alterar a configuração de CORS, reinicie a API; CORS não se aplica ao cliente Android nativo.
 
 ## Organização
 
@@ -157,6 +156,6 @@ CORS para a porta 5501.
 - `flutter build web --no-web-resources-cdn`: concluído.
 - `flutter build apk --debug`: concluído; APK em `build/app/outputs/flutter-apk/app-debug.apk`.
 - Houve aviso de versões diferentes do formato XML do Android SDK; não impediu o build.
-- Preflights reais para as duas origens 5501 retornaram 400 sem autorização CORS.
+- API local respondeu em `/health`; preflights e POST inválido de cadastro de origem local dinâmica retornaram 200/422 com autorização CORS.
 - Não foram executados fluxos ponta a ponta no emulador/celular contra a API da turma.
   As requisições automáticas de teste usaram `MockClient`, sem gravar no banco real.

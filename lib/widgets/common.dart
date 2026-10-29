@@ -22,7 +22,7 @@ class Brand extends StatelessWidget {
           color: AppTheme.gold,
         ),
       ),
-      Text('Seu grimório de tarefas', style: TextStyle(color: AppTheme.paper)),
+      Text('Seu grimório de aventuras', style: TextStyle(color: AppTheme.paper)),
     ],
   );
 }
@@ -134,7 +134,7 @@ class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
     child: Semantics(
-      label: 'Carregando',
+      label: 'Preparando sua aventura',
       child: CircularProgressIndicator(color: AppTheme.gold),
     ),
   );

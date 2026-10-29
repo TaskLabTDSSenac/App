@@ -42,7 +42,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Detalhes da tarefa')),
+    appBar: AppBar(title: const Text('Pergaminho da missão')),
     body: loading
         ? const LoadingView()
         : error != null
@@ -59,7 +59,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Chip(
-                      label: Text(task!.completed ? 'Concluída' : 'Pendente'),
+                      label: Text(task!.completed ? 'Concluída' : 'Em andamento'),
                     ),
                     SelectableText(task!.description ?? 'Sem descrição'),
                     const SizedBox(height: 24),

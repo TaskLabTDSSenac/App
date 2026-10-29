@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('TaskLab'),
+          const Text('Crônicas do Grimório'),
           Text(
             widget.auth.user?.name ?? '',
             style: const TextStyle(fontSize: 13),
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (mounted) await widget.tasks.refresh();
             },
             icon: const Icon(Icons.add),
-            label: const Text('Criar tarefa'),
+            label: const Text('Nova missão'),
           )
         : null,
     bottomNavigationBar: NavigationBar(
@@ -61,11 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
       destinations: const [
         NavigationDestination(
           icon: Icon(Icons.auto_stories_outlined),
-          label: 'Tarefas',
+          label: 'Missões',
         ),
         NavigationDestination(
           icon: Icon(Icons.person_outline),
-          label: 'Perfil',
+          label: 'Aventureiro',
         ),
       ],
     ),

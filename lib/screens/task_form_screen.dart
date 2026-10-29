@@ -71,7 +71,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text(widget.id == null ? 'Criar tarefa' : 'Editar tarefa'),
+      title: Text(widget.id == null ? 'Nova missão' : 'Editar missão'),
     ),
     body: loading
         ? const LoadingView()
@@ -87,7 +87,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Uma página do seu grimório',
+                        'Registre os detalhes desta missão',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       MessageBox(error),
@@ -97,7 +97,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                         validator: Validators.title,
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
-                          labelText: 'Título',
+                          labelText: 'Nome da missão',
                           counterText: '${title.text.trim().runes.length}/150',
                         ),
                       ),
@@ -109,7 +109,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                         maxLines: 6,
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
-                          labelText: 'Descrição (opcional)',
+                          labelText: 'Descrição da missão (opcional)',
                           counterText: '${description.text.runes.length}/500',
                         ),
                       ),
@@ -117,7 +117,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                       FilledButton(
                         key: const Key('task-save'),
                         onPressed: busy ? null : save,
-                        child: Text(busy ? 'Salvando…' : 'Salvar'),
+                        child: Text(busy ? 'Registrando…' : 'Registrar missão'),
                       ),
                       TextButton(
                         onPressed: busy ? null : () => Navigator.pop(context),

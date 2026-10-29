@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Criar conta')),
+    appBar: AppBar(title: const Text('Criar personagem')),
     body: PageBody(
       child: Card(
         child: Padding(
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Sua jornada começa aqui',
+                  'Sua lenda começa aqui',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 MessageBox(error),
@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 FilledButton(
                   key: const Key('register-submit'),
                   onPressed: busy ? null : submit,
-                  child: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  child: Text(busy ? 'Preparando personagem…' : 'Criar personagem'),
                 ),
               ],
             ),

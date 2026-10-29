@@ -53,7 +53,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Alterar senha')),
+    appBar: AppBar(title: const Text('Proteger sua conta')),
     body: PageBody(
       child: Card(
         child: Padding(

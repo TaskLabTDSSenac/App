@@ -23,7 +23,7 @@ class TaskCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Chip(
-            label: Text(task.completed ? 'Concluída' : 'Pendente'),
+            label: Text(task.completed ? 'Concluída' : 'Em andamento'),
             avatar: Icon(
               task.completed ? Icons.check : Icons.schedule,
               size: 18,
@@ -49,7 +49,7 @@ class TaskCard extends StatelessWidget {
               );
               if (context.mounted) await refresh();
             },
-            child: const Text('Visualizar'),
+            child: const Text('Abrir pergaminho'),
           ),
           TaskActions(
             task: task,
