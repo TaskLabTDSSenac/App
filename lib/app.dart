@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'controllers/auth_controller.dart';
@@ -42,7 +42,7 @@ class _TaskLabAppState extends State<TaskLabApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     navigatorKey: navigator,
-    title: 'TaskLab',
+    title: 'TaskLab Performance',
     debugShowCheckedModeBanner: false,
     theme: AppTheme.theme,
     locale: const Locale('pt', 'BR'),

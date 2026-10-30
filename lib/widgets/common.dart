@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
 
@@ -8,22 +8,30 @@ class Brand extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     children: [
       Semantics(
-        label: 'TaskLab',
-        child: Icon(
-          Icons.auto_stories_outlined,
-          color: AppTheme.gold,
-          size: 46,
+        label: 'TaskLab - performance',
+        child: Container(
+          width: 76,
+          height: 76,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color(0xff20252a),
+            border: Border.all(color: AppTheme.gold, width: 2),
+          ),
+          child: const Icon(Icons.speed_rounded, color: AppTheme.gold, size: 42),
         ),
       ),
-      Text(
-        'TaskLab',
+      const SizedBox(height: 10),
+      const Text(
+        'TASKLAB',
         style: TextStyle(
-          fontFamily: 'TaskLabTitle',
-          fontSize: 34,
-          color: AppTheme.gold,
+          fontFamily: 'TaskLabText', fontSize: 30, fontWeight: FontWeight.w700,
+          letterSpacing: 3, color: Colors.white,
         ),
       ),
-      Text('Seu grimório de tarefas', style: TextStyle(color: AppTheme.paper)),
+      const Text(
+        'DESEMPENHO EM CADA TAREFA',
+        style: TextStyle(color: Color(0xffadb5bd), letterSpacing: 1.2, fontSize: 11),
+      ),
     ],
   );
 }
@@ -59,18 +67,12 @@ class MessageBox extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 12),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: success
-                  ? const Color(0xffe2e9d4)
-                  : const Color(0xfffae8df),
+              color: success ? const Color(0xff1e392e) : const Color(0xff492220),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               text!,
-              style: TextStyle(
-                color: success
-                    ? const Color(0xff315333)
-                    : const Color(0xff852d28),
-              ),
+              style: TextStyle(color: success ? const Color(0xff9de0bd) : const Color(0xffffaaa5)),
             ),
           ),
         );
@@ -100,10 +102,7 @@ class ErrorView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             MessageBox(message),
-            FilledButton(
-              onPressed: retry,
-              child: const Text('Tentar novamente'),
-            ),
+            FilledButton(onPressed: retry, child: const Text('Tentar novamente')),
           ],
         ),
       ),

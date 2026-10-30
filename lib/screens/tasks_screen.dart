@@ -30,27 +30,46 @@ class _TasksScreenState extends State<TasksScreen> {
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
           children: [
-            const Text(
-              'Meu grimório de tarefas',
-              style: TextStyle(
-                fontFamily: 'TaskLabTitle',
-                fontSize: 27,
-                color: Colors.white,
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                gradient: const LinearGradient(
+                  colors: [Color(0xff282e35), Color(0xff14171b)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                border: Border.all(color: const Color(0xff3c444d)),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.speed_rounded, size: 42, color: Color(0xffe10600)),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('PRÓXIMA VOLTA', style: TextStyle(color: Color(0xffe53935), fontWeight: FontWeight.bold, letterSpacing: 1.4, fontSize: 12)),
+                        SizedBox(height: 5),
+                        Text('Suas tarefas', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white)),
+                        Text('Organize o foco. Acelere nos resultados.', style: TextStyle(color: Colors.white60)),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
+            const SizedBox(height: 10),
             if (state.loading) const LinearProgressIndicator(),
             if (state.error != null) ...[
               MessageBox(state.error),
-              FilledButton(
-                onPressed: state.refresh,
-                child: const Text('Tentar novamente'),
-              ),
+              FilledButton(onPressed: state.refresh, child: const Text('Tentar novamente')),
             ],
             if (!state.loading && state.error == null && state.tasks.isEmpty)
               const Card(
                 child: Padding(
                   padding: EdgeInsets.all(24),
-                  child: Text('Seu grimório ainda não possui tarefas.'),
+                  child: Text('Pista livre! Adicione uma tarefa para começar sua próxima volta.'),
                 ),
               ),
             for (final task in state.tasks)

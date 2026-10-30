@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../controllers/auth_controller.dart';
 import '../models/validators.dart';
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Sua jornada começa aqui',
+                  'Monte seu perfil de piloto',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 MessageBox(error),
@@ -89,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 PasswordField(
                   key: const Key('register-confirmation'),
                   controller: confirmation,
-                  label: 'Confirmação de senha',
+                  label: 'ConfirmaÃ§Ã£o de senha',
                   validator: (value) =>
                       Validators.confirmation(value, password.text),
                   newPassword: true,
@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 FilledButton(
                   key: const Key('register-submit'),
                   onPressed: busy ? null : submit,
-                  child: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  child: Text(busy ? 'Criando contaâ€¦' : 'Criar conta'),
                 ),
               ],
             ),
@@ -108,3 +108,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
     ),
   );
 }
+

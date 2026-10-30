@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../config/app_config.dart';
 import '../controllers/auth_controller.dart';
@@ -67,18 +67,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Meu perfil',
+                'Perfil do piloto',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               if (!AppConfig.profileEditingAvailable)
                 const MessageBox(
-                  'Edição de nome e e-mail pendente: a API ainda não oferece essa rota. Nenhuma alteração será salva.',
+                  'EdiÃ§Ã£o de nome e e-mail pendente: a API ainda nÃ£o oferece essa rota. Nenhuma alteraÃ§Ã£o serÃ¡ salva.',
                 ),
               MessageBox(message, success: success),
               TextFormField(
                 initialValue: '${widget.auth.user?.id ?? ''}',
                 readOnly: true,
-                decoration: const InputDecoration(labelText: 'ID do usuário'),
+                decoration: const InputDecoration(labelText: 'ID do usuÃ¡rio'),
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -101,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: busy || !AppConfig.profileEditingAvailable
                     ? null
                     : save,
-                child: Text(busy ? 'Salvando…' : 'Salvar dados'),
+                child: Text(busy ? 'Salvandoâ€¦' : 'Salvar dados'),
               ),
               TextButton(
                 key: const Key('profile-password'),
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Projeto educacional inspirado no universo de Harry Potter.',
+                'Ajuste seus dados e mantenha tudo em alta performance.',
                 textAlign: TextAlign.center,
               ),
             ],
@@ -130,3 +130,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),
   );
 }
+
