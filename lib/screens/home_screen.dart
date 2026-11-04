@@ -24,8 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text('TaskLab'),
           Text(
-            widget.auth.user?.name ?? '',
-            style: const TextStyle(fontSize: 13),
+            'O futuro é glorioso',
+            style: TextStyle(
+              fontSize: 12,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.72),
+            ),
           ),
         ],
       ),

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const night = Color(0xff091321);
-  static const gold = Color(0xffc8a567);
-  static const paper = Color(0xfff3e8d1);
+  static const night = Color(0xff090909);
+  static const gold = Color(0xffffd500);
+  static const paper = Color(0xff171717);
   static ThemeData get theme {
     final base = ThemeData(
       useMaterial3: true,
       fontFamily: 'TaskLabText',
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff795a29),
+        brightness: Brightness.dark,
+        seedColor: gold,
         surface: paper,
+        onSurface: const Color(0xfff5f5f5),
       ),
     );
     return base.copyWith(
@@ -23,18 +25,18 @@ class AppTheme {
         headlineSmall: const TextStyle(
           fontFamily: 'TaskLabTitle',
           fontSize: 27,
-          color: Color(0xff302b25),
+          color: Color(0xffffd500),
         ),
         titleLarge: const TextStyle(
           fontFamily: 'TaskLabTitle',
           fontSize: 23,
-          color: Color(0xff302b25),
+          color: Color(0xffffd500),
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(),
         filled: true,
-        fillColor: Color(0xfffffaf0),
+        fillColor: Color(0xff202020),
       ),
       cardTheme: CardThemeData(
         color: paper,
@@ -46,8 +48,8 @@ class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: gold,
-          foregroundColor: const Color(0xff2d2415),
+        backgroundColor: gold,
+        foregroundColor: const Color(0xff111111),
           minimumSize: const Size(48, 48),
         ),
       ),
