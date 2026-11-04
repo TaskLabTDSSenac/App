@@ -1,0 +1,9 @@
+ENTREGÁVEIS — UC12 / TASKLAB
+
+A planilha contém 10 casos comuns a Web e Mobile, com resultados e status separados por plataforma. Os relatórios Word documentam cada CT e reservam o campo para evidência visual.
+
+Situação em 03/11/2026: CT-02 na Web foi aprovado; os demais casos estão bloqueados. A API em 127.0.0.1:8000 não respondeu. flutter devices listou Windows, Chrome e Edge; sem Android/emulador para execução Mobile. Há capturas reais dos CT-01 (API indisponivel) e CT-02 na Web; os demais prints dependem da execução dos cenários.
+
+O enunciado menciona uma planilha e modelos Word disponibilizados, mas eles não estavam no workspace; os arquivos foram criados a partir dos campos pedidos no enunciado.
+
+Para concluir: iniciar a API; executar os cenários na Web; conectar/iniciar dispositivo Flutter; repetir os CTs no Mobile; preencher resultados e status e anexar capturas reais.
