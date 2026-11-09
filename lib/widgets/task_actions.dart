@@ -104,12 +104,11 @@ class _TaskActionsState extends State<TaskActions> {
               },
         child: const Text('Editar'),
       ),
-      if (!widget.task.completed)
-        TextButton(
-          key: const Key('task-complete'),
-          onPressed: busy ? null : () => run('complete'),
-          child: Text(busy ? 'Aguarde…' : 'Concluir'),
-        ),
+      TextButton(
+        key: const Key('task-complete'),
+        onPressed: busy ? null : () => run('complete'),
+        child: Text(busy ? 'Aguarde…' : 'Concluir'),
+      ),
       TextButton(
         key: const Key('task-delete'),
         onPressed: busy ? null : () => run('delete'),
