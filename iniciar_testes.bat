@@ -23,7 +23,7 @@ if errorlevel 1 goto erro
 
 echo Inicie manualmente a API de testes e o emulador Android.
 echo O teste remove apenas a sessao salva do TaskLab e pode cadastrar uma conta.
-call flutter test integration_test/cadastro_test.dart -d "%TEST_DEVICE%" "--dart-define=API_BASE_URL=%TEST_API_URL%"
+call flutter test integration_test -d "%TEST_DEVICE%" "--dart-define=API_BASE_URL=%TEST_API_URL%"
 set "TEST_EXIT_CODE=%ERRORLEVEL%"
 echo.
 echo Codigo de saida do teste: %TEST_EXIT_CODE%

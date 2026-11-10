@@ -21,7 +21,7 @@ void main() {
       () => find.byKey(const Key('login-email')).evaluate().isNotEmpty,
     );
 
-    final abrirCadastro = find.text('Ainda não possui uma conta? Cadastre-se');
+    final abrirCadastro = find.text('Novo por aqui? Criar conta');
     await tester.ensureVisible(abrirCadastro);
     await tester.tap(abrirCadastro);
     await tester.pumpAndSettle(
@@ -51,7 +51,7 @@ void main() {
 
     const erroLocal = 'Senha: informe de 8 a 128 caracteres.';
     const erroApi = 'Senha: valor inválido ou fora dos limites permitidos.';
-    const sucesso = 'Conta criada com sucesso. Faça login para continuar.';
+    const sucesso = 'Conta criada. Entre para acessar sua garagem.';
     bool rejeitouSenha() =>
         find.text(erroLocal).evaluate().isNotEmpty ||
         find.text(erroApi).evaluate().isNotEmpty;
@@ -94,7 +94,7 @@ void main() {
       () => find.byKey(const Key('login-email')).evaluate().isNotEmpty,
     );
 
-    final abrirCadastro = find.text('Ainda não possui uma conta? Cadastre-se');
+    final abrirCadastro = find.text('Novo por aqui? Criar conta');
     await tester.ensureVisible(abrirCadastro);
     await tester.tap(abrirCadastro);
     await tester.pumpAndSettle(
@@ -124,7 +124,7 @@ void main() {
     await tester.tap(cadastrar);
 
     // O formulário faz a requisição real; verificamos o resultado pela interface.
-    const sucesso = 'Conta criada com sucesso. Faça login para continuar.';
+    const sucesso = 'Conta criada. Entre para acessar sua garagem.';
     await aguardar(
       tester,
       () =>
