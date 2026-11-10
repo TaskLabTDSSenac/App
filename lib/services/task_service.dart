@@ -23,7 +23,7 @@ class TaskService {
       id == null ? 'POST' : 'PUT',
       id == null ? '/tasks' : '/tasks/$id',
       data: {
-        'title': title.trim(),
+        'title': title,
         'description': description.isEmpty ? null : description,
       },
     ),
