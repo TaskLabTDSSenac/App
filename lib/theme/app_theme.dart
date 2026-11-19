@@ -6,7 +6,6 @@ class AppTheme {
   static const gold = Color(0xffe83d55);
   static const paper = Color(0xfff2eee9);
   static const surfaceDark = Color(0xff202027);
-  static const ink = Color(0xff111116);
 
   static ThemeData get theme {
     final base = ThemeData(
@@ -54,7 +53,7 @@ class AppTheme {
         filled: true,
         fillColor: surfaceDark,
         labelStyle: const TextStyle(color: paper),
-        hintStyle: TextStyle(color: paper.withOpacity(.6)),
+        hintStyle: TextStyle(color: paper.withValues(alpha: .6)),
       ),
       cardTheme: CardThemeData(
         color: surfaceDark,
@@ -81,7 +80,7 @@ class AppTheme {
           (states) => TextStyle(
             color: states.contains(WidgetState.selected)
                 ? gold
-                : paper.withOpacity(.68),
+                : paper.withValues(alpha: .68),
             fontWeight: states.contains(WidgetState.selected)
                 ? FontWeight.w700
                 : FontWeight.normal,

@@ -7,7 +7,7 @@ class Validators {
   static String? title(String? value) =>
       length(value?.trim(), 3, 150, 'Título');
   static String? registrationPassword(String? value) =>
-      length(value, 6, 128, 'Senha');
+      length(value, 8, 128, 'Senha');
   static String? confirmationRequired(String? value) =>
       length(value, 1, 128, 'Confirmação de senha');
   static String? taskTitle(String? value, {required bool editing}) {
