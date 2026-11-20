@@ -29,13 +29,32 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: PageBody(
+    body: Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          'assets/sabrina_background.jpg',
+          fit: BoxFit.cover,
+          alignment: const Alignment(0, -0.15),
+          semanticLabel: 'Sabrina Carpenter em um retrato com fundo rosa',
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0x20320d25), Color(0x70320d25), Color(0xb8200b1a)],
+            ),
+          ),
+        ),
+        PageBody(
       child: Column(
         children: [
           const SizedBox(height: 12),
           const Brand(),
           const SizedBox(height: 30),
           Card(
+            color: const Color(0xf7fff7fa),
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: AutofillGroup(
@@ -144,6 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
+        ),
+      ],
     ),
   );
 }
