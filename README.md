@@ -84,6 +84,7 @@ bloqueará as chamadas; CORS não se aplica ao cliente Android nativo.
 - `screens/`: telas, Navigator, formulários e navegação inferior Tarefas/Perfil.
 - `widgets/`: campos de senha, cartões, estados e ações compartilhadas.
 - `exceptions/`: erros compreensíveis em português.
+- `test/`: cliente HTTP simulado, sessão, modelos, validações e widgets.
 
 O cliente HTTP usa UTF-8, timeout e Bearer apenas nas operações protegidas.
 Não repete operações de escrita. Em timeout de escrita, avisa que o resultado
@@ -130,22 +131,30 @@ e [Libre Baskerville/OFL](https://github.com/google/fonts/tree/main/ofl/librebas
 ## Verificação
 
 ```powershell
-dart format lib
+dart format lib test
 flutter analyze
+flutter test
 flutter build web --no-web-resources-cdn
 flutter build apk --debug
 ```
 
 O primeiro teste de integração Android está descrito na seção CT-02 abaixo.
+Os testes não usam banco real nem criam dados na API da turma. Verificam modelos,
+login válido/inválido, ausência de Bearer em login, UTF-8, 204, erros textuais/lista,
+expiração, timeout sem repetição, preservação do token em 500, respostas antigas,
+falha de armazenamento, validações, tela estreita/texto ampliado e confirmação/
+cancelamento da exclusão. O teste padrão do contador foi substituído.
 
 Mantenha `pubspec.lock` versionado: é um aplicativo. Não há dependência de Node.js.
-A compilação não substitui a verificação manual em dispositivo. A edição de perfil depende do backend e o Web depende do
+Não se deve confundir testes HTTP simulados ou compilação com execução ponta a
+ponta em dispositivo. A edição de perfil depende do backend e o Web depende do
 CORS para a porta 5501.
 
 ### Resultados desta implementação
 
-- `dart format lib`: concluído.
+- `dart format lib test`: concluído.
 - `flutter analyze`: nenhum problema encontrado.
+- `flutter test`: 18 testes passaram, incluindo limpeza da pilha no logout.
 - `flutter build web --no-web-resources-cdn`: concluído.
 - `flutter build apk --debug`: concluído; APK em `build/app/outputs/flutter-apk/app-debug.apk`.
 - Houve aviso de versões diferentes do formato XML do Android SDK; não impediu o build.
@@ -355,3 +364,4 @@ Executa somente o CT-01. Substitua o identificador pelo mostrado em `flutter dev
 A API com banco exclusivo e o emulador devem estar iniciados; o teste grava
 uma conta fictícia. O `iniciar_testes.bat ID_DO_DISPOSITIVO` executa ambos os casos.
 O CT-02 continua exigindo rejeição da senha curta e pode falhar pelo defeito didático.
+  As requisições automáticas de teste usaram `MockClient`, sem gravar no banco real.
