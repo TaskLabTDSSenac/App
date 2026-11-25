@@ -83,11 +83,13 @@ class _TaskActionsState extends State<TaskActions> {
 
   @override
   Widget build(BuildContext context) => Wrap(
-    spacing: 8,
+    spacing: 12,
     runSpacing: 8,
     children: [
-      TextButton(
+      IconButton.filledTonal(
         key: const Key('task-edit'),
+        tooltip: 'Editar tarefa',
+        icon: const Icon(Icons.edit_outlined),
         onPressed: busy
             ? null
             : () async {
@@ -102,17 +104,27 @@ class _TaskActionsState extends State<TaskActions> {
                 );
                 if (mounted) await widget.refresh();
               },
-        child: const Text('Editar'),
       ),
-      TextButton(
+      IconButton.filledTonal(
         key: const Key('task-complete'),
+        tooltip: 'Concluir tarefa',
+        icon: busy
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            : const Icon(Icons.check_circle_outline),
         onPressed: busy ? null : () => run('complete'),
-        child: Text(busy ? 'Aguarde…' : 'Concluir'),
       ),
-      TextButton(
+      IconButton.filledTonal(
         key: const Key('task-delete'),
+        tooltip: 'Excluir tarefa',
+        style: IconButton.styleFrom(
+          foregroundColor: Theme.of(context).colorScheme.error,
+        ),
+        icon: const Icon(Icons.delete_outline),
         onPressed: busy ? null : () => run('delete'),
-        child: const Text('Excluir'),
       ),
     ],
   );

@@ -42,6 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
     floatingActionButton: index == 0
         ? FloatingActionButton.extended(
             key: const Key('task-create'),
+            heroTag: 'task-create-fab',
+            elevation: 8,
             onPressed: () async {
               await Navigator.push(
                 context,
@@ -51,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
               );
               if (mounted) await widget.tasks.refresh();
             },
-            icon: const Icon(Icons.add),
-            label: const Text('Criar tarefa'),
+            icon: const Icon(Icons.add_task),
+            label: const Text('Adicionar tarefa'),
           )
         : null,
     bottomNavigationBar: NavigationBar(

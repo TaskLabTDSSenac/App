@@ -94,10 +94,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
-                  key: const Key('register-submit'),
-                  onPressed: busy ? null : submit,
-                  child: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                SizedBox(
+                  height: 54,
+                  child: FilledButton.icon(
+                    key: const Key('register-submit'),
+                    onPressed: busy ? null : submit,
+                    icon: busy
+                        ? const SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.person_add_alt_1),
+                    label: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  ),
                 ),
               ],
             ),

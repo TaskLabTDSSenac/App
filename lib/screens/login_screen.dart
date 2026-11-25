@@ -49,7 +49,25 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         children: [
           const Brand(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 18),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Row(
+                children: [
+                  const Icon(Icons.auto_awesome, color: Color(0xff795a29)),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Organize suas missões e acompanhe cada conquista.',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
           Card(
             color: const Color(0xf7fff7fa),
             child: Padding(
@@ -97,7 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                         child: Text(widget.auth.busy ? 'Entrando…' : 'Entrar'),
                       ),
-                      TextButton(
+                      OutlinedButton.icon(
+                        key: const Key('open-register'),
                         onPressed: widget.auth.busy
                             ? null
                             : () async {
@@ -115,8 +134,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                 }
                               },
-                        child: const Text(
-                          'Ainda não possui uma conta? Cadastre-se',
+                        icon: const Icon(Icons.person_add_alt_1),
+                        label: const Text('Novo por aqui? Cadastre-se'),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(52),
+                          foregroundColor: const Color(0xff795a29),
+                          side: const BorderSide(color: Color(0xff795a29)),
+                          textStyle: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                       if (widget.auth.message?.contains('apagar o token') ==

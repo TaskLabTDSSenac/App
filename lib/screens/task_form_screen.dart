@@ -117,14 +117,26 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      FilledButton(
-                        key: const Key('task-save'),
-                        onPressed: busy ? null : save,
-                        child: Text(busy ? 'Salvando…' : 'Salvar'),
-                      ),
-                      TextButton(
-                        onPressed: busy ? null : () => Navigator.pop(context),
-                        child: const Text('Cancelar'),
+                      SizedBox(
+                        height: 54,
+                        child: FilledButton.icon(
+                          key: const Key('task-save'),
+                          onPressed: busy ? null : save,
+                          icon: busy
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                )
+                              : const Icon(Icons.add_task),
+                          label: Text(
+                            busy
+                                ? 'Salvando…'
+                                : widget.id == null
+                                    ? 'Criar tarefa'
+                                    : 'Salvar alterações',
+                          ),
+                        ),
                       ),
                     ],
                   ),
