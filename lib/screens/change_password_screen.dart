@@ -88,10 +88,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
+                FilledButton.icon(
                   key: const Key('password-submit'),
                   onPressed: busy ? null : save,
-                  child: Text(busy ? 'Alterando…' : 'Alterar senha'),
+                  icon: const Icon(Icons.lock_reset_rounded),
+                  label: Text(busy ? 'Alterando…' : 'Alterar senha'),
                 ),
                 const SizedBox(height: 12),
                 const Text(

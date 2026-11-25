@@ -30,115 +30,120 @@ class _LoginScreenState extends State<LoginScreen> {
     body: Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(
-          'assets/sabrina_background.jpg',
-          fit: BoxFit.cover,
-          alignment: const Alignment(0, -0.15),
-          semanticLabel: 'Sabrina Carpenter em um retrato com fundo rosa',
-        ),
         const DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Color(0x20320d25), Color(0x70320d25), Color(0xb8200b1a)],
+              colors: [Color(0xff302329), Color(0xff1a151a), Color(0xff100f12)],
             ),
           ),
         ),
         PageBody(
-      child: Column(
-        children: [
-          const Brand(),
-          const SizedBox(height: 24),
-          Card(
-            color: const Color(0xf7fff7fa),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: AutofillGroup(
-                child: Form(
-                  key: form,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'A Escola Jujutsu precisa de você',
-                        style: Theme.of(context).textTheme.headlineSmall,
+          child: Column(
+            children: [
+              const Brand(),
+              const SizedBox(height: 24),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: AutofillGroup(
+                    child: Form(
+                      key: form,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'A Escola Jujutsu precisa de você',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'Entre para a comunidade de feiticeiros e acompanhe suas missões.',
+                          ),
+                          MessageBox(notice, success: true),
+                          MessageBox(widget.auth.message),
+                          TextFormField(
+                            key: const Key('login-email'),
+                            controller: email,
+                            keyboardType: TextInputType.emailAddress,
+                            autofillHints: const [AutofillHints.email],
+                            validator: Validators.email,
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.alternate_email_rounded),
+                              labelText: 'E-mail',
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          PasswordField(
+                            key: const Key('login-password'),
+                            controller: password,
+                            label: 'Senha',
+                            validator: Validators.currentPassword,
+                          ),
+                          const SizedBox(height: 20),
+                          FilledButton.icon(
+                            key: const Key('login-submit'),
+                            onPressed: widget.auth.busy
+                                ? null
+                                : () {
+                                    if (form.currentState!.validate()) {
+                                      widget.auth.login(
+                                        email.text,
+                                        password.text,
+                                      );
+                                    }
+                                  },
+                            icon: const Icon(Icons.login_rounded),
+                            label: Text(
+                              widget.auth.busy ? 'Entrando…' : 'Entrar',
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: widget.auth.busy
+                                ? null
+                                : () async {
+                                    final registered =
+                                        await Navigator.of(context).push<bool>(
+                                          MaterialPageRoute(
+                                            builder: (_) => RegisterScreen(
+                                              auth: widget.auth,
+                                            ),
+                                          ),
+                                        );
+                                    if (mounted && registered == true) {
+                                      setState(() {
+                                        notice = 'Conta criada com sucesso. Faça login para continuar.';
+                                        password.clear();
+                                      });
+                                    }
+                                  },
+                            child: const Text(
+                              'Ainda não possui uma conta? Cadastre-se',
+                            ),
+                          ),
+                          if (widget.auth.message?.contains('apagar o token') ==
+                              true)
+                            TextButton(
+                              onPressed: () => widget.auth.logout(),
+                              child: const Text(
+                                'Tentar limpar sessão novamente',
+                              ),
+                            ),
+                        ],
                       ),
-                      const SizedBox(height: 12),
-                      const Text(
-                        'Entre para a comunidade de feiticeiros e acompanhe suas missões.',
-                      ),
-                      MessageBox(notice, success: true),
-                      MessageBox(widget.auth.message),
-                      TextFormField(
-                        key: const Key('login-email'),
-                        controller: email,
-                        keyboardType: TextInputType.emailAddress,
-                        autofillHints: const [AutofillHints.email],
-                        validator: Validators.email,
-                        decoration: const InputDecoration(labelText: 'E-mail'),
-                      ),
-                      const SizedBox(height: 16),
-                      PasswordField(
-                        key: const Key('login-password'),
-                        controller: password,
-                        label: 'Senha',
-                        validator: Validators.currentPassword,
-                      ),
-                      const SizedBox(height: 20),
-                      FilledButton(
-                        key: const Key('login-submit'),
-                        onPressed: widget.auth.busy
-                            ? null
-                            : () {
-                                if (form.currentState!.validate()) {
-                                  widget.auth.login(email.text, password.text);
-                                }
-                              },
-                        child: Text(widget.auth.busy ? 'Entrando…' : 'Entrar'),
-                      ),
-                      TextButton(
-                        onPressed: widget.auth.busy
-                            ? null
-                            : () async {
-                                final registered = await Navigator.of(context)
-                                    .push<bool>(
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            RegisterScreen(auth: widget.auth),
-                                      ),
-                                    );
-                                if (mounted && registered == true) {
-                                  setState(() {
-                                    notice = 'Conta criada com sucesso. Faça login para continuar.';
-                                    password.clear();
-                                  });
-                                }
-                              },
-                        child: const Text(
-                          'Ainda não possui uma conta? Cadastre-se',
-                        ),
-                      ),
-                      if (widget.auth.message?.contains('apagar o token') ==
-                          true)
-                        TextButton(
-                          onPressed: () => widget.auth.logout(),
-                          child: const Text('Tentar limpar sessão novamente'),
-                        ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(height: 20),
+              const Text(
+                'TOKYO JUJUTSU HIGH • REGISTRO DE MISSÕES',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white70),
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
-          const Text(
-            'TOKYO JUJUTSU HIGH • REGISTRO DE MISSÕES',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white70),
-          ),
-        ],
-      ),
         ),
       ],
     ),

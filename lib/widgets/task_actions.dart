@@ -84,7 +84,7 @@ class _TaskActionsState extends State<TaskActions> {
     spacing: 8,
     runSpacing: 8,
     children: [
-      TextButton(
+      OutlinedButton.icon(
         key: const Key('task-edit'),
         onPressed: busy
             ? null
@@ -100,18 +100,21 @@ class _TaskActionsState extends State<TaskActions> {
                 );
                 if (mounted) await widget.refresh();
               },
-        child: const Text('Editar'),
+        icon: const Icon(Icons.edit_outlined),
+        label: const Text('Editar'),
       ),
       if (!widget.task.completed)
-        TextButton(
+        FilledButton.tonalIcon(
           key: const Key('task-complete'),
           onPressed: busy ? null : () => run('complete'),
-          child: Text(busy ? 'Aguarde…' : 'Concluir missão'),
+          icon: const Icon(Icons.task_alt_rounded),
+          label: Text(busy ? 'Aguarde…' : 'Concluir missão'),
         ),
-      TextButton(
+      OutlinedButton.icon(
         key: const Key('task-delete'),
         onPressed: busy ? null : () => run('delete'),
-        child: const Text('Apagar'),
+        icon: const Icon(Icons.delete_outline_rounded),
+        label: const Text('Apagar'),
       ),
     ],
   );

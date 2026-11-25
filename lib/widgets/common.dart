@@ -59,16 +59,21 @@ class MessageBox extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: success
-                  ? const Color(0xffe2e9d4)
-                  : const Color(0xfffae8df),
-              borderRadius: BorderRadius.circular(8),
+                  ? const Color(0xff193b2b)
+                  : const Color(0xff421f25),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: success
+                    ? const Color(0xff46765b)
+                    : const Color(0xff85414a),
+              ),
             ),
             child: Text(
               text!,
               style: TextStyle(
                 color: success
-                    ? const Color(0xff315333)
-                    : const Color(0xff852d28),
+                    ? const Color(0xffb9e2c5)
+                    : const Color(0xffffc2c2),
               ),
             ),
           ),

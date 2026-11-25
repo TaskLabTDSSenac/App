@@ -72,6 +72,13 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       title: Text(widget.id == null ? 'Nova missão' : 'Editar missão'),
+      actions: [
+        IconButton(
+          tooltip: 'Fechar formulário',
+          onPressed: busy ? null : () => Navigator.pop(context),
+          icon: const Icon(Icons.close_rounded),
+        ),
+      ],
     ),
     body: loading
         ? const LoadingView()
@@ -80,17 +87,33 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
         : PageBody(
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(22),
                 child: Form(
                   key: form,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        'Relatório da missão',
-                        style: Theme.of(context).textTheme.titleLarge,
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.article_outlined,
+                            color: Color(0xffd4b35f),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              'Relatório de campo',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Preencha os dados da missão. O relatório é opcional.',
                       ),
                       MessageBox(error),
+                      const SizedBox(height: 18),
                       TextFormField(
                         key: const Key('task-title'),
                         controller: title,
@@ -100,11 +123,12 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                         ),
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
-                          labelText: 'Nome da missão',
+                          prefixIcon: const Icon(Icons.sell_outlined),
+                          labelText: 'Nome da missão *',
                           counterText: '${title.text.trim().runes.length}/150',
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 18),
                       TextFormField(
                         key: const Key('task-description'),
                         controller: description,
@@ -112,19 +136,43 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                         maxLines: 6,
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
-                          labelText: 'Relatório (opcional)',
+                          alignLabelWithHint: true,
+                          prefixIcon: const Padding(
+                            padding: EdgeInsets.only(bottom: 102),
+                            child: Icon(Icons.notes_rounded),
+                          ),
+                          labelText: 'Detalhes do relatório (opcional)',
+                          hintText:
+                              'Descreva o que aconteceu e o contexto da missão',
                           counterText: '${description.text.runes.length}/500',
                         ),
                       ),
-                      const SizedBox(height: 24),
-                      FilledButton(
+                      const SizedBox(height: 22),
+                      FilledButton.icon(
                         key: const Key('task-save'),
                         onPressed: busy ? null : save,
-                        child: Text(busy ? 'Registrando…' : 'Registrar missão'),
+                        icon: busy
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.archive_outlined),
+                        label: Text(
+                          busy
+                              ? 'Salvando registro…'
+                              : widget.id == null
+                              ? 'Registrar missão'
+                              : 'Salvar alterações',
+                        ),
                       ),
-                      TextButton(
+                      const SizedBox(height: 8),
+                      OutlinedButton.icon(
                         onPressed: busy ? null : () => Navigator.pop(context),
-                        child: const Text('Cancelar'),
+                        icon: const Icon(Icons.close_rounded),
+                        label: const Text('Cancelar'),
                       ),
                     ],
                   ),

@@ -29,6 +29,7 @@ class _PasswordFieldState extends State<PasswordField> {
       widget.newPassword ? AutofillHints.newPassword : AutofillHints.password,
     ],
     decoration: InputDecoration(
+      prefixIcon: const Icon(Icons.lock_outline_rounded),
       labelText: widget.label,
       suffixIcon: IconButton(
         tooltip: obscure

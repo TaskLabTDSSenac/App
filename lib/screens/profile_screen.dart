@@ -78,14 +78,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextFormField(
                 initialValue: '${widget.auth.user?.id ?? ''}',
                 readOnly: true,
-                decoration: const InputDecoration(labelText: 'ID do usuário'),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.badge_outlined),
+                  labelText: 'ID do usuário',
+                ),
               ),
               const SizedBox(height: 16),
               TextFormField(
                 key: const Key('profile-name'),
                 controller: name,
                 validator: Validators.name,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person_outline),
+                  labelText: 'Nome *',
+                ),
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -93,17 +99,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 controller: email,
                 validator: Validators.email,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(labelText: 'E-mail'),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.alternate_email_rounded),
+                  labelText: 'E-mail *',
+                ),
               ),
               const SizedBox(height: 20),
-              FilledButton(
+              FilledButton.icon(
                 key: const Key('profile-save'),
                 onPressed: busy || !AppConfig.profileEditingAvailable
                     ? null
                     : save,
-                child: Text(busy ? 'Salvando…' : 'Salvar dados'),
+                icon: const Icon(Icons.save_outlined),
+                label: Text(busy ? 'Salvando…' : 'Salvar dados'),
               ),
-              TextButton(
+              TextButton.icon(
                 key: const Key('profile-password'),
                 onPressed: () => Navigator.push(
                   context,
@@ -111,12 +121,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (_) => ChangePasswordScreen(auth: widget.auth),
                   ),
                 ),
-                child: const Text('Alterar senha'),
+                icon: const Icon(Icons.lock_reset_rounded),
+                label: const Text('Alterar senha'),
               ),
-              OutlinedButton(
+              OutlinedButton.icon(
                 key: const Key('logout'),
                 onPressed: () => widget.auth.logout(),
-                child: const Text('Sair'),
+                icon: const Icon(Icons.logout_rounded),
+                label: const Text('Sair'),
               ),
               const SizedBox(height: 12),
               const Text(

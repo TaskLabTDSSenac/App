@@ -66,7 +66,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: name,
                   validator: Validators.name,
                   autofillHints: const [AutofillHints.name],
-                  decoration: const InputDecoration(labelText: 'Nome'),
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person_outline),
+                    labelText: 'Nome *',
+                  ),
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
@@ -75,7 +78,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   validator: Validators.email,
                   keyboardType: TextInputType.emailAddress,
                   autofillHints: const [AutofillHints.email],
-                  decoration: const InputDecoration(labelText: 'E-mail'),
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.alternate_email_rounded),
+                    labelText: 'E-mail *',
+                  ),
                 ),
                 const SizedBox(height: 16),
                 PasswordField(
@@ -94,10 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   newPassword: true,
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
+                FilledButton.icon(
                   key: const Key('register-submit'),
                   onPressed: busy ? null : submit,
-                  child: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  icon: const Icon(Icons.person_add_alt_1_rounded),
+                  label: Text(busy ? 'Criando conta…' : 'Criar conta'),
                 ),
               ],
             ),
