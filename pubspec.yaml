@@ -1,4 +1,4 @@
-name: tasklab_mobile
+﻿name: tasklab_mobile
 description: "TaskLab Mobile - aplicativo didatico de tarefas."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -41,6 +41,8 @@ dependencies:
   intl: ^0.20.3
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -99,3 +101,4 @@ flutter:
     - family: TaskLabTitle
       fonts:
         - asset: assets/fonts/LibreBaskerville.ttf
+

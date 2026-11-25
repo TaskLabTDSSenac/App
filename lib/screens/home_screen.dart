@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (mounted) await widget.tasks.refresh();
             },
             icon: const Icon(Icons.add),
-            label: const Text('Nova missão'),
+            label: const Text('Adicionar tarefa'),
           )
         : null,
     bottomNavigationBar: NavigationBar(

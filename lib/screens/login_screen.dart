@@ -78,7 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                         child: Text(widget.auth.busy ? 'Conectando...' : 'Fazer login na matrix'),
                       ),
-                      TextButton(
+                      OutlinedButton.icon(
+                        key: const Key('login-register'),
                         onPressed: widget.auth.busy
                             ? null
                             : () async {
@@ -96,9 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                 }
                               },
-                        child: const Text(
-                          'Novo na rede? Crie seu acesso',
-                        ),
+                        icon: const Icon(Icons.person_add_alt_1),
+                        label: const Text('Criar minha conta'),
                       ),
                       if (widget.auth.message?.contains('apagar o token') ==
                           true)
