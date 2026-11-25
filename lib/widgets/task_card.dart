@@ -75,23 +75,23 @@ class TaskCard extends StatelessWidget {
             style: const TextStyle(color: Color(0xff5e6669), height: 1.4),
           ),
           const SizedBox(height: 10),
-          TextButton.icon(
-            key: const Key('task-view'),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      TaskDetailsScreen(service: service, id: task.id),
-                ),
-              );
-              if (context.mounted) await refresh();
-            },
-            icon: const Icon(Icons.article_outlined, size: 17),
-            label: const Text('Ver ficha'),
-            style: TextButton.styleFrom(
-              foregroundColor: AppTheme.ink,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              key: const Key('task-view'),
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        TaskDetailsScreen(service: service, id: task.id),
+                  ),
+                );
+                if (context.mounted) await refresh();
+              },
+              icon: const Icon(Icons.article_outlined),
+              label: const Text('Abrir detalhes da tarefa'),
+              style: OutlinedButton.styleFrom(foregroundColor: AppTheme.ink),
             ),
           ),
           TaskActions(

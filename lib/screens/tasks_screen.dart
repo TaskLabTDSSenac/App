@@ -36,6 +36,12 @@ class _TasksScreenState extends State<TasksScreen> {
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 112),
           children: [
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 760),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
             _GarageBanner(total: state.tasks.length, completed: completed),
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 22, 4, 4),
@@ -75,6 +81,10 @@ class _TasksScreenState extends State<TasksScreen> {
                 service: state.service,
                 refresh: state.refresh,
               ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       );

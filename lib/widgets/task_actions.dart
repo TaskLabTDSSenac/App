@@ -89,7 +89,7 @@ class _TaskActionsState extends State<TaskActions> {
     spacing: 2,
     runSpacing: 0,
     children: [
-      TextButton.icon(
+      OutlinedButton.icon(
         key: const Key('task-edit'),
         onPressed: busy
             ? null
@@ -105,14 +105,14 @@ class _TaskActionsState extends State<TaskActions> {
                 );
                 if (mounted) await widget.refresh();
               },
-        icon: const Icon(Icons.edit_outlined, size: 16),
+        icon: const Icon(Icons.edit_outlined, size: 18),
         label: const Text('Editar'),
       ),
       if (!widget.task.completed)
-        TextButton.icon(
+        OutlinedButton.icon(
           key: const Key('task-complete'),
           onPressed: busy ? null : () => run('complete'),
-          icon: const Icon(Icons.check_circle_outline_rounded, size: 16),
+          icon: const Icon(Icons.check_circle_outline_rounded, size: 18),
           label: Text(busy ? 'Aguarde…' : 'Concluir'),
         ),
       TextButton.icon(

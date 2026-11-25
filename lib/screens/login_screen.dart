@@ -93,7 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      TextButton(
+                      const SizedBox(height: 8),
+                      OutlinedButton.icon(
+                        key: const Key('open-register'),
                         onPressed: widget.auth.busy
                             ? null
                             : () async {
@@ -111,7 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                 }
                               },
-                        child: const Text('Novo por aqui? Criar conta'),
+                        icon: const Icon(Icons.person_add_alt_1_rounded),
+                        label: const Text('Criar uma conta'),
                       ),
                       if (widget.auth.message?.contains('apagar o token') ==
                           true)

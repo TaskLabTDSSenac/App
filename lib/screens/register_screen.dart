@@ -110,8 +110,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 FilledButton.icon(
                   key: const Key('register-submit'),
                   onPressed: busy ? null : submit,
-                  icon: const Icon(Icons.flag_rounded),
-                  label: Text(busy ? 'Criando conta…' : 'Criar conta'),
+                  icon: const Icon(Icons.person_add_alt_1_rounded),
+                  label: Text(busy ? 'Criando conta…' : 'Criar minha conta'),
                 ),
               ],
             ),
