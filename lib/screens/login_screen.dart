@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                         child: Text(widget.auth.busy ? 'Entrando…' : 'Entrar'),
                       ),
-                      TextButton(
+                      FilledButton(
                         onPressed: widget.auth.busy
                             ? null
                             : () async {
