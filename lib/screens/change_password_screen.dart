@@ -17,7 +17,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final current = TextEditingController(),
       next = TextEditingController(),
       confirmation = TextEditingController();
-  bool busy = false, success = false;
+  bool busy = false;
   String? message;
   @override
   void dispose() {
@@ -31,19 +31,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     if (busy || !form.currentState!.validate()) return;
     setState(() {
       busy = true;
-      success = false;
       message = null;
     });
     try {
       await widget.auth.users.changePassword(current.text, next.text);
       if (!mounted) return;
-      current.clear();
-      next.clear();
-      confirmation.clear();
-      setState(() {
-        success = true;
-        message = 'Senha alterada com sucesso.';
-      });
+      await widget.auth.logout(
+        successMessage:
+            'Senha alterada com sucesso. Faça login com sua nova senha.',
+      );
     } catch (e) {
       if (mounted) setState(() => message = friendlyError(e));
     } finally {
@@ -64,7 +60,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Text('Escolha uma nova senha entre 8 e 128 caracteres.'),
-                MessageBox(message, success: success),
+                MessageBox(message),
                 PasswordField(
                   key: const Key('password-current'),
                   controller: current,

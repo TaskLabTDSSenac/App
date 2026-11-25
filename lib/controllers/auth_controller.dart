@@ -17,6 +17,7 @@ class AuthController extends ChangeNotifier {
   AuthPhase phase = AuthPhase.checking;
   User? user;
   String? message;
+  bool messageSuccess = false;
   bool busy = false;
   int _operation = 0;
   AuthController(this.api, this.storage) {
@@ -29,6 +30,7 @@ class AuthController extends ChangeNotifier {
     final operation = ++_operation;
     phase = AuthPhase.checking;
     message = null;
+    messageSuccess = false;
     notifyListeners();
     try {
       final token = api.token ?? await storage.read();
@@ -55,6 +57,7 @@ class AuthController extends ChangeNotifier {
     if (busy) return;
     busy = true;
     message = null;
+    messageSuccess = false;
     final operation = ++_operation;
     notifyListeners();
     try {
@@ -81,20 +84,24 @@ class AuthController extends ChangeNotifier {
     }
   }
 
-  Future<void> logout({bool expired = false}) async {
+  Future<void> logout({bool expired = false, String? successMessage}) async {
     if (expired && api.token == null) return;
     final operation = ++_operation;
     api.token = null;
     user = null;
     busy = false;
     phase = AuthPhase.signedOut;
-    message = expired ? 'Sua sessão expirou. Entre novamente.' : null;
+    message =
+        successMessage ??
+        (expired ? 'Sua sessão expirou. Entre novamente.' : null);
+    messageSuccess = successMessage != null;
     notifyListeners();
     try {
       await storage.delete();
     } catch (_) {
       if (operation == _operation) {
         message = 'A sessão foi encerrada em memória, mas não foi possível apagar o token salvo. Tente sair novamente antes de fechar o aplicativo.';
+        messageSuccess = false;
         notifyListeners();
       }
     }

@@ -50,7 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Abra seu grimório e prepare-se para novas missões.',
                       ),
                       MessageBox(notice, success: true),
-                      MessageBox(widget.auth.message),
+                      MessageBox(
+                        widget.auth.message,
+                        success: widget.auth.messageSuccess,
+                      ),
                       TextFormField(
                         key: const Key('login-email'),
                         controller: email,
@@ -76,7 +79,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   widget.auth.login(email.text, password.text);
                                 }
                               },
-                        child: Text(widget.auth.busy ? 'Abrindo o portal…' : 'Entrar na aventura'),
+                        child: Text(
+                          widget.auth.busy
+                              ? 'Abrindo o portal…'
+                              : 'Entrar na aventura',
+                        ),
                       ),
                       TextButton(
                         onPressed: widget.auth.busy

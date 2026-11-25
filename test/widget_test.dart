@@ -67,6 +67,61 @@ void main() {
     auth.dispose();
     api.close();
   });
+  testWidgets('changing password returns to login with success notice', (
+    tester,
+  ) async {
+    final storage = MemoryStorage()..token = 'saved';
+    final api = ApiClient(
+      client: MockClient((request) async {
+        if (request.url.path == '/users/me') return jsonResponse(userJson);
+        if (request.url.path == '/tasks') return jsonResponse([]);
+        if (request.url.path == '/users/me/password') {
+          expect(request.method, 'PATCH');
+          return jsonResponse({});
+        }
+        return jsonResponse({'detail': 'Unexpected request'}, 404);
+      }),
+      baseUrl: 'https://api.example',
+    );
+    final auth = AuthController(api, storage);
+    final tasks = TasksController(auth, TaskService(api));
+    await tester.pumpWidget(TaskLabApp(auth: auth, tasks: tasks));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Aventureiro'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('profile-password')));
+    await tester.tap(find.byKey(const Key('profile-password')));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byKey(const Key('password-current')),
+      'senha-atual',
+    );
+    await tester.enterText(
+      find.byKey(const Key('password-new')),
+      'senha-nova123',
+    );
+    await tester.enterText(
+      find.byKey(const Key('password-confirmation')),
+      'senha-nova123',
+    );
+    await tester.ensureVisible(find.byKey(const Key('password-submit')));
+    await tester.tap(find.byKey(const Key('password-submit')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('login-email')), findsOneWidget);
+    expect(
+      find.text('Senha alterada com sucesso. Faça login com sua nova senha.'),
+      findsOneWidget,
+    );
+    expect(auth.phase, AuthPhase.signedOut);
+    expect(storage.token, isNull);
+
+    await tester.pumpWidget(const SizedBox());
+    tasks.dispose();
+    auth.dispose();
+    api.close();
+  });
   testWidgets('delete requires confirmation and supports cancel', (
     tester,
   ) async {
