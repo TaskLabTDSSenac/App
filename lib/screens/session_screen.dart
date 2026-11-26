@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../controllers/auth_controller.dart';
 import '../controllers/tasks_controller.dart';
+import '../theme/font_preference.dart';
 import '../widgets/common.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
@@ -9,7 +10,13 @@ import 'login_screen.dart';
 class SessionScreen extends StatelessWidget {
   final AuthController auth;
   final TasksController tasks;
-  const SessionScreen({super.key, required this.auth, required this.tasks});
+  final FontPreference fontPreference;
+  const SessionScreen({
+    super.key,
+    required this.auth,
+    required this.tasks,
+    required this.fontPreference,
+  });
   @override
   Widget build(BuildContext context) => switch (auth.phase) {
     AuthPhase.checking => const Scaffold(body: SafeArea(child: LoadingView())),
@@ -18,6 +25,7 @@ class SessionScreen extends StatelessWidget {
       key: ValueKey(auth.user!.id),
       auth: auth,
       tasks: tasks,
+      fontPreference: fontPreference,
     ),
     AuthPhase.unavailable => Scaffold(
       appBar: AppBar(title: const Text('Verificar sessão')),

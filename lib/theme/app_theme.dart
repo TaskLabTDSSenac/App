@@ -1,5 +1,28 @@
 import 'package:flutter/material.dart';
 
+enum AppFontStyle {
+  legible(
+    label: 'Leitura confortável',
+    bodyFamily: 'TaskLabText',
+    headingFamily: 'TaskLabTitle',
+  ),
+  manuscript(
+    label: 'Manuscrito',
+    bodyFamily: 'TaskLabTitle',
+    headingFamily: 'TaskLabTitle',
+  );
+
+  final String label;
+  final String bodyFamily;
+  final String headingFamily;
+
+  const AppFontStyle({
+    required this.label,
+    required this.bodyFamily,
+    required this.headingFamily,
+  });
+}
+
 class AppTheme {
   static const night = Color(0xff1b0b12);
   static const forest = Color(0xff481827);
@@ -9,7 +32,7 @@ class AppTheme {
   static const ink = Color(0xff30251f);
   static const mutedInk = Color(0xff716052);
 
-  static ThemeData get theme {
+  static ThemeData theme({AppFontStyle fontStyle = AppFontStyle.legible}) {
     final scheme = ColorScheme.fromSeed(
       seedColor: forest,
       brightness: Brightness.dark,
@@ -22,50 +45,67 @@ class AppTheme {
     );
     final base = ThemeData(
       useMaterial3: true,
-      fontFamily: 'TaskLabText',
+      fontFamily: fontStyle.bodyFamily,
       colorScheme: scheme,
     );
 
     return base.copyWith(
       scaffoldBackgroundColor: night,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: night,
         foregroundColor: brightGold,
         elevation: 0,
         scrolledUnderElevation: 0,
         titleTextStyle: TextStyle(
-          fontFamily: 'TaskLabTitle',
+          fontFamily: fontStyle.headingFamily,
           fontSize: 20,
           color: brightGold,
         ),
       ),
       textTheme: base.textTheme.copyWith(
-        headlineSmall: const TextStyle(
-          fontFamily: 'TaskLabTitle',
+        headlineSmall: TextStyle(
+          fontFamily: fontStyle.headingFamily,
           fontSize: 27,
           height: 1.25,
           color: ink,
         ),
-        titleLarge: const TextStyle(
-          fontFamily: 'TaskLabTitle',
+        titleLarge: TextStyle(
+          fontFamily: fontStyle.headingFamily,
           fontSize: 23,
           color: ink,
         ),
-        titleMedium: const TextStyle(
-          fontFamily: 'TaskLabTitle',
+        titleMedium: TextStyle(
+          fontFamily: fontStyle.headingFamily,
           fontSize: 17,
           color: ink,
         ),
-        bodyLarge: const TextStyle(color: ink, height: 1.45),
-        bodyMedium: const TextStyle(color: ink, height: 1.4),
-        bodySmall: const TextStyle(color: mutedInk),
+        bodyLarge: TextStyle(
+          fontFamily: fontStyle.bodyFamily,
+          color: ink,
+          height: 1.45,
+        ),
+        bodyMedium: TextStyle(
+          fontFamily: fontStyle.bodyFamily,
+          color: ink,
+          height: 1.4,
+        ),
+        bodySmall: TextStyle(fontFamily: fontStyle.bodyFamily, color: mutedInk),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xfffff9ed),
-        labelStyle: const TextStyle(color: mutedInk),
-        hintStyle: TextStyle(color: mutedInk.withValues(alpha: 0.75)),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        labelStyle: TextStyle(
+          fontFamily: fontStyle.bodyFamily,
+          color: mutedInk,
+        ),
+        hintStyle: TextStyle(
+          fontFamily: fontStyle.bodyFamily,
+          color: mutedInk.withValues(alpha: 0.75),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Color(0xffc9b991)),
@@ -99,7 +139,9 @@ class AppTheme {
           foregroundColor: night,
           minimumSize: const Size(48, 50),
           textStyle: const TextStyle(fontWeight: FontWeight.w700),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -107,7 +149,9 @@ class AppTheme {
           foregroundColor: brightGold,
           side: const BorderSide(color: gold),
           minimumSize: const Size(48, 48),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -116,13 +160,23 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: forest,
         indicatorColor: gold.withValues(alpha: 0.22),
-        labelTextStyle: WidgetStateProperty.resolveWith((states) => TextStyle(
-          color: states.contains(WidgetState.selected) ? brightGold : paper.withValues(alpha: 0.7),
-          fontWeight: states.contains(WidgetState.selected) ? FontWeight.w700 : FontWeight.w400,
-        )),
-        iconTheme: WidgetStateProperty.resolveWith((states) => IconThemeData(
-          color: states.contains(WidgetState.selected) ? brightGold : paper.withValues(alpha: 0.7),
-        )),
+        labelTextStyle: WidgetStateProperty.resolveWith(
+          (states) => TextStyle(
+            color: states.contains(WidgetState.selected)
+                ? brightGold
+                : paper.withValues(alpha: 0.7),
+            fontWeight: states.contains(WidgetState.selected)
+                ? FontWeight.w700
+                : FontWeight.w400,
+          ),
+        ),
+        iconTheme: WidgetStateProperty.resolveWith(
+          (states) => IconThemeData(
+            color: states.contains(WidgetState.selected)
+                ? brightGold
+                : paper.withValues(alpha: 0.7),
+          ),
+        ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: gold,

@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 import '../config/app_config.dart';
 import '../controllers/auth_controller.dart';
 import '../models/validators.dart';
+import '../theme/app_theme.dart';
+import '../theme/font_preference.dart';
 import '../widgets/common.dart';
 import 'change_password_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final AuthController auth;
-  const ProfileScreen({super.key, required this.auth});
+  final FontPreference fontPreference;
+  const ProfileScreen({
+    super.key,
+    required this.auth,
+    required this.fontPreference,
+  });
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -56,6 +63,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  Future<void> updateFont(AppFontStyle style) async {
+    try {
+      await widget.fontPreference.update(style);
+    } on Exception {
+      if (mounted) {
+        showNotice(context, 'Não foi possível salvar a preferência de fonte.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) => PageBody(
     child: Card(
@@ -69,6 +86,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Text(
                 'Ficha do aventureiro',
                 style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Letras do grimório',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Text('Escolha como prefere ler suas crônicas.'),
+              ListenableBuilder(
+                listenable: widget.fontPreference,
+                builder: (context, _) => Column(
+                  children: [
+                    if (widget.fontPreference.error != null)
+                      MessageBox(widget.fontPreference.error),
+                    DropdownButtonFormField<AppFontStyle>(
+                      key: const Key('font-style'),
+                      initialValue: widget.fontPreference.style,
+                      decoration: const InputDecoration(
+                        labelText: 'Estilo de escrita',
+                      ),
+                      items: [
+                        for (final style in AppFontStyle.values)
+                          DropdownMenuItem(
+                            value: style,
+                            child: Text(
+                              style.label,
+                              style: TextStyle(fontFamily: style.bodyFamily),
+                            ),
+                          ),
+                      ],
+                      onChanged: busy || widget.fontPreference.loading
+                          ? null
+                          : (style) {
+                              if (style != null) updateFont(style);
+                            },
+                    ),
+                    if (widget.fontPreference.loading)
+                      const LinearProgressIndicator(),
+                    const SizedBox(height: 8),
+                    Text(
+                      'As palavras do seu grimório',
+                      style: TextStyle(
+                        fontFamily: widget.fontPreference.style.bodyFamily,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               if (!AppConfig.profileEditingAvailable)
                 const MessageBox(
